@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="ITM(SLS) BARODA UNIVERSITY | Exam Result">
+    <title>ITM(SLS) BARODA UNIVERSITY | Exam Result</title>
+
+    <!-- CSS Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-color: #eef1f5;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+
+        /* Header Styling */
+        .dashboard-header {
+            background-color: #ffffff;
+            height: 75px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .header-profile-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.15s;
+            user-select: none;
+        }
+
+        .header-profile-toggle:hover {
+            background-color: #f6f8fa;
+        }
+
+        .header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #c2cad8;
+        }
+
+        .header-welcome {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555555;
+        }
+
+        .header-welcome span {
+            color: #337ab7;
+            font-weight: 700;
+        }
+
+        /* Profile Dropdown Menu */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background-color: #2c3542;
+            min-width: 190px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            border-radius: 0px;
+            padding: 5px 0;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 22px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #2c3542;
+        }
+
+        /* Navigation Dropdown Menu */
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2c3542;
+            min-width: 220px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            border-radius: 0px;
+            padding: 5px 0;
+        }
+
+        .nav-dropdown.show {
+            display: block;
+        }
+
+        .nav-item-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            color: #a5b6c7;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #3e4b5c;
+            color: #ffffff;
+        }
+
+        .dropdown-item i {
+            color: #5b9bd1;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Navigation Styling */
+        .nav-tier-1 {
+            background-color: #364150;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2f3742;
+        }
+
+        .nav-item-1 {
+            color: #b4bcc8;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .nav-item-1:hover {
+            color: #ffffff;
+            background-color: #3e4b5c;
+        }
+
+        .nav-item-1.active {
+            color: #ffffff;
+            background-color: #2c3542;
+        }
+
+        .nav-item-1 i.fa-angle-down {
+            margin-left: 4px;
+            font-size: 11px;
+        }
+
+        .nav-tier-2 {
+            background-color: #ffffff;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #e1e6eb;
+        }
+
+        .nav-tier-2-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item-2 {
+            color: #7f90a4;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.15s;
+        }
+
+        .nav-item-2:hover {
+            color: #3598dc;
+        }
+
+        .nav-item-2.active {
+            color: #333333;
+        }
+
+        /* Page Title */
+        .page-title-row {
+            padding: 15px 0 15px 15px;
+            margin: 0;
+            border-top: 1px solid #f1f3fa;
+        }
+
+        .page-title {
+            font-size: 22px;
+            font-weight: 300;
+            color: #666666;
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .page-title span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #93a3b5;
+            text-transform: uppercase;
+        }
+
+        /* Main Content */
+        .content-container {
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Search Result Card */
+        .result-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .result-card-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f1f3fa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-card-header i {
+            color: #26c281;
+            font-size: 16px;
+        }
+
+        .result-card-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #337ab7;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .result-card-body {
+            padding: 25px 15px 35px 15px;
+        }
+
+        /* Exam Form Row */
+        .exam-form-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .exam-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #333333;
+            padding-top: 7px;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        .exam-label .required {
+            color: #e02222;
+            margin-right: 3px;
+        }
+
+        .exam-select-wrapper {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        /* Custom Select Styling */
+        .custom-select-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select-trigger {
+            width: 100%;
+            height: 34px;
+            padding: 6px 30px 6px 12px;
+            font-size: 14px;
+            color: #555;
+            background-color: #ffffff;
+            border: 1px solid #c2cad8;
+            border-radius: 0px;
+            outline: none;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            user-select: none;
+            transition: border-color 0.15s;
+        }
+
+        .custom-select-trigger:hover,
+        .custom-select-trigger.open {
+            border-color: #93a1bb;
+        }
+
+        .custom-select-trigger::after {
+            content: '';
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 5px solid #999;
+        }
+
+        .custom-select-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #ffffff;
+            border: 1px solid #c2cad8;
+            border-top: none;
+            z-index: 100;
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .custom-select-dropdown.open {
+            display: block;
+        }
+
+        .custom-select-search {
+            width: 100%;
+            padding: 6px 12px;
+            font-size: 14px;
+            color: #555;
+            border: none;
+            border-bottom: 1px solid #e1e6eb;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        .custom-select-option {
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #333;
+            cursor: pointer;
+            transition: background-color 0.1s;
+        }
+
+        .custom-select-option:hover,
+        .custom-select-option.highlighted {
+            background-color: #5897cf;
+            color: #ffffff;
+        }
+
+        .custom-select-option.selected {
+            background-color: #5897cf;
+            color: #ffffff;
+        }
+
+        .custom-select-option.placeholder {
+            color: #999;
+        }
+
+        /* ===== Semester Result Display ===== */
+        .semester-result-section {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .semester-result-section.visible {
+            display: block;
+        }
+
+        .semester-result-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+        }
+
+        .semester-result-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f1f3fa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .semester-result-header i {
+            color: #26c281;
+            font-size: 16px;
+        }
+
+        .semester-result-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #337ab7;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .semester-result-body {
+            padding: 15px;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Grades Table */
+        .grades-table-wrapper {
+            flex: 1;
+            min-width: 450px;
+        }
+
+        .grades-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .grades-table thead th {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e6eb;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .grades-table thead th:nth-child(1) {
+            width: 30px;
+        }
+
+        .grades-table thead th:nth-child(2) {
+            width: 75px;
+        }
+
+        .grades-table thead th:nth-child(3) {
+            text-align: left;
+            min-width: 180px;
+        }
+
+        .grades-table thead th:nth-child(4) {
+            width: 55px;
+        }
+
+        .grades-table tbody td {
+            border: 1px solid #e1e6eb;
+            padding: 8px 10px;
+            text-align: center;
+            color: #333;
+            vertical-align: middle;
+        }
+
+        .grades-table tbody td:nth-child(3) {
+            text-align: left;
+        }
+
+        .grades-table tbody td.grade-cell {
+            font-weight: 600;
+        }
+
+        .grades-table tbody td.grade-highlight {
+            background-color: #dff0d8;
+            font-weight: 600;
+        }
+
+        .grades-table tbody td.grade-na {
+            color: #999;
+        }
+
+        /* Student Info Panel */
+        .student-info-panel {
+            min-width: 280px;
+            max-width: 320px;
+        }
+
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .info-table tr {
+            border-bottom: 1px solid #f1f3fa;
+        }
+
+        .info-table td {
+            padding: 8px 10px;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        .info-table td:first-child {
+            font-weight: 600;
+            color: #555;
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .info-table td:last-child {
+            color: #333;
+        }
+
+        .info-table .result-class-value {
+            color: #1a8a5c;
+            font-weight: 600;
+        }
+
+        .btn-download-marksheet {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background-color: #337ab7;
+            color: #ffffff;
+            border: none;
+            border-radius: 0px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.15s;
+        }
+
+        .btn-download-marksheet:hover {
+            background-color: #286090;
+        }
+
+        /* Success Message */
+        .result-success-msg {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 15px;
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 0 15px 15px 15px;
+        }
+
+        .result-success-msg i {
+            color: #3c763d;
+            font-size: 15px;
+        }
+
+        /* Scroll Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #a6b1bd;
+            color: #ffffff;
+            border: none;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .scroll-top-btn:hover {
+            opacity: 1;
+            background-color: #8e9ca8;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img class="header-logo" src="assets/images/itmbu_logo.png" alt="ITM Baroda University">
+        </div>
+        <div class="header-right">
+            <div class="header-profile-toggle" onclick="toggleDropdown(event)">
+                <img class="header-avatar" src="assets/images/student_photo.png" alt="Student Profile Photo">
+                <div class="header-welcome">Hi, <span>Vaghela Dhyey Amitkumar</span> <i class="fa fa-angle-down"
+                        style="margin-left: 5px; color: #a6b1bd;"></i></div>
+            </div>
+            <!-- Profile Dropdown -->
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to profile...')"><i class="fa fa-user"></i>
+                    My Profile</a>
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to change password...')"><i
+                        class="fa fa-key"></i> Change Password</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="logout()"><i class="fa fa-lock"></i> Log
+                    Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tier 1 -->
+    <nav class="nav-tier-1">
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'iaDropdown')"><i
+                    class="fa fa-bar-chart"></i> Internal Assessment <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="iaDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Internal Assessment Marks...')">Internal Assessment Marks</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item-1"><i class="fa fa-bus"></i> Transport <i class="fa fa-angle-down"></i></a>
+        <a href="dashboard.html" class="nav-item-1"><i class="fa fa-tachometer"></i> Dashboard</a>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'personalDropdown')"><i
+                    class="fa fa-user"></i> Personal <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="personalDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Profile...')"><i
+                        class="fa fa-user"></i> Profile</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'emiDropdown')"><i
+                    class="fa fa-credit-card"></i> EMI <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="emiDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Loan Application History...')"><i class="fa fa-history"></i> Loan
+                    Application History</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Using EMI...')"><i
+                        class="fa fa-credit-card"></i> Pay Using EMI</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'timetableDropdown')"><i
+                    class="fa fa-calendar"></i> Timetable / Attendance <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="timetableDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Timetable...')"><i
+                        class="fa fa-calendar"></i> Timetable</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Attendance...')"><i
+                        class="fa fa-file-text-o"></i> Attendance</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1 active" onclick="toggleNavDropdown(event, 'examDropdown')"><i
+                    class="fa fa-file-text-o"></i> Exam <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="examDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Admit Card...')"><i
+                        class="fa fa-calendar-check-o"></i> Admit Card</a>
+                <a href="result.html" class="dropdown-item"><i class="fa fa-trophy"></i> Result</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Regular Exam Form Submission...')"><i class="fa fa-file-text-o"></i>
+                    Regular Exam Form Submission</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Remedial Exam Form...')"><i class="fa fa-file-text-o"></i> Remedial
+                    Exam Form</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item-1"><i class="fa fa-book"></i> LMS</a>
+    </nav>
+
+    <!-- Navigation Tier 2 -->
+    <nav class="nav-tier-2">
+        <div class="nav-tier-2-links">
+            <a href="#" class="nav-item-2"><i class="fa fa-pencil-square-o"></i> Mid Exam</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2"
+                    onclick="toggleNavDropdown(event, 'convocationDropdown')"><i class="fa fa-graduation-cap"></i>
+                    Convocation <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="convocationDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Convocation Registration...')"><i
+                            class="fa fa-graduation-cap"></i> Convocation Registration</a>
+                </div>
+            </div>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'feeDropdown')"><i
+                        class="fa fa-money"></i> Fee <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="feeDropdown">
+                    <a href="fees.html" class="dropdown-item"><i
+                            class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-history"></i> Fee History</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-bus"></i> Transport Fee</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-users"></i> Mentoring</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'hostelDropdown')"><i
+                        class="fa fa-building-o"></i> Hostel <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="hostelDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Fees...')"><i
+                            class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Hostel...')"><i
+                            class="fa fa-building-o"></i> Hostel</a>
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Gate Pass List...')"><i class="fa fa-building-o"></i> Gate Pass
+                        List</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-comments-o"></i> Feedback</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'otherDropdown')"><i
+                        class="fa fa-cog"></i> Other <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="otherDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Certificate Request...')">Certificate Request</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-title-row">
+            <h2 class="page-title">Exam Result <span>Vaghela Dhyey Amitkumar</span></h2>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="content-container">
+        <div class="result-card">
+            <div class="result-card-header">
+                <i class="fa fa-cogs"></i>
+                <h3>Search Your Result</h3>
+            </div>
+            <div class="result-card-body">
+                <div class="exam-form-row">
+                    <label class="exam-label"><span class="required">*</span> Exam</label>
+                    <div class="exam-select-wrapper">
+                        <div class="custom-select-container" id="examSelectContainer">
+                            <div class="custom-select-trigger" id="examSelectTrigger" onclick="toggleExamSelect(event)">
+                                <span id="examSelectedText">Select Exam</span>
+                            </div>
+                            <div class="custom-select-dropdown" id="examSelectDropdown">
+                                <input type="text" class="custom-select-search" id="examSearchInput" placeholder=""
+                                    oninput="filterExamOptions()" onclick="event.stopPropagation()">
+                                <div class="custom-select-option placeholder selected" data-value=""
+                                    onclick="selectExamOption(this)">Select Exam</div>
+                                <div class="custom-select-option" data-value="btech-sem3-winter-2025"
+                                    onclick="selectExamOption(this)">BTech Regular Semester - 3 FOE - Winter 2025-26
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Semester Result Display (hidden by default) -->
+        <div class="semester-result-section" id="semesterResultSection">
+            <div class="semester-result-card">
+                <div class="semester-result-header">
+                    <i class="fa fa-cogs"></i>
+                    <h3 id="semesterTitle">SEMESTER - 3</h3>
+                </div>
+                <div class="semester-result-body">
+                    <div class="grades-table-wrapper">
+                        <table class="grades-table">
+                            <thead>
+                                <tr>
+                                    <th>Sr.</th>
+                                    <th>Course</th>
+                                    <th>Subject</th>
+                                    <th>Credit</th>
+                                    <th>Int.<br>Grade</th>
+                                    <th>Ext.<br>Grade</th>
+                                    <th>Pr.<br>Grade</th>
+                                    <th>Overall<br>Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gradesTableBody">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="student-info-panel">
+                        <table class="info-table">
+                            <tr>
+                                <td>Seat No.</td>
+                                <td id="infoSeatNo">720130247</td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td id="infoName">VAGHELA DHYEY AMITKUMAR</td>
+                            </tr>
+                            <tr>
+                                <td>Current Backlog</td>
+                                <td id="infoCurrentBacklog">0</td>
+                            </tr>
+                            <tr>
+                                <td>Total Backlog</td>
+                                <td id="infoTotalBacklog">0</td>
+                            </tr>
+                            <tr>
+                                <td>SPI</td>
+                                <td id="infoSPI">8.10</td>
+                            </tr>
+                            <tr>
+                                <td>CPI</td>
+                                <td id="infoCPI">8.10</td>
+                            </tr>
+                            <tr>
+                                <td>Result class</td>
+                                <td id="infoResultClass" class="result-class-value">First Class with Distinction</td>
+                            </tr>
+                        </table>
+                        <button class="btn-download-marksheet" onclick="alert('Downloading Mark Sheet...')">
+                            <i class="fa fa-download"></i> Download Mark Sheet
+                        </button>
+                    </div>
+                </div>
+                <div class="result-success-msg" id="resultSuccessMsg">
+                    <i class="fa fa-check-circle"></i>
+                    <span>You have passed all the subjects.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll Top Button -->
+    <button class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script type="text/javascript">
+        // Security check: redirect to login if not authenticated
+        if (localStorage.getItem("gnums_auth_state") !== "true") {
+            let loginPath = "itmbu.html";
+            if (window.location.pathname.includes("Research_paper") || window.location.pathname.includes("dhyey")) {
+                loginPath = "itmbu.html";
+            } else {
+                loginPath = "Research_paper/dhyey/itmbu.html";
+            }
+            window.location.href = loginPath;
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("gnums_auth_state");
+            localStorage.removeItem("gnums_user_role");
+
+            let logoutPath = "itmbu.html";
+            if (window.location.pathname.includes("Research_paper") || window.location.pathname.includes("dhyey")) {
+                logoutPath = "itmbu.html";
+            } else {
+                logoutPath = "Research_paper/dhyey/itmbu.html";
+            }
+            window.location.href = logoutPath;
+        }
+
+        // Dropdown toggle function for profile
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== "profileDropdown") {
+                    d.classList.remove("show");
+                }
+            });
+            const dropdown = document.getElementById("profileDropdown");
+            if (dropdown) {
+                dropdown.classList.toggle("show");
+            }
+        }
+
+        // Dropdown toggle function for navigation links
+        function toggleNavDropdown(event, dropdownId) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.classList.remove("show");
+                }
+            });
+            const dropdown = document.getElementById(dropdownId);
+            if (dropdown) {
+                dropdown.classList.toggle("show");
+            }
+        }
+
+        // Custom Exam Select Dropdown
+        function toggleExamSelect(event) {
+            event.stopPropagation();
+            const trigger = document.getElementById("examSelectTrigger");
+            const dropdown = document.getElementById("examSelectDropdown");
+            const isOpen = dropdown.classList.contains("open");
+
+            if (isOpen) {
+                dropdown.classList.remove("open");
+                trigger.classList.remove("open");
+            } else {
+                dropdown.classList.add("open");
+                trigger.classList.add("open");
+                document.getElementById("examSearchInput").focus();
+            }
+        }
+
+        // Mock result data for each semester
+        const semesterData = {
+            "btech-sem3-winter-2025": {
+                title: "SEMESTER - 3",
+                seatNo: "720130247",
+                name: "VAGHELA DHYEY AMITKUMAR",
+                currentBacklog: 0,
+                totalBacklog: 0,
+                spi: "8.10",
+                cpi: "8.10",
+                resultClass: "First Class with Distinction",
+                passed: true,
+                subjects: [
+                    { course: "C2310C2", subject: "Computer Architecture", credit: "4.00", intGrade: "A", extGrade: "C", prGrade: "A", overall: "A" },
+                    { course: "C2310C5", subject: "Data Structures and Algorithms", credit: "4.00", intGrade: "B", extGrade: "B", prGrade: "O", overall: "B" },
+                    { course: "C2311A2", subject: "PBL: ASP .NET", credit: "1.00", intGrade: "-", extGrade: "-", prGrade: "A", overall: "A" },
+                    { course: "C2311C1", subject: "Object Oriented Programming Using Java", credit: "4.00", intGrade: "A", extGrade: "A", prGrade: "O", overall: "A" },
+                    { course: "C2311C4", subject: "Database Management System", credit: "4.00", intGrade: "O", extGrade: "A", prGrade: "O", overall: "B" },
+                    { course: "C2511A2", subject: "PBL: UI/UX Design", credit: "1.00", intGrade: "-", extGrade: "-", prGrade: "A", overall: "B" },
+                    { course: "S2320C1", subject: "Computer Oriented Numerical Methods with Python", credit: "4.00", intGrade: "C", extGrade: "B", prGrade: "O", overall: "C" }
+                ]
+            }
+        };
+
+        function selectExamOption(el) {
+            const text = el.textContent;
+            const value = el.getAttribute("data-value");
+            document.getElementById("examSelectedText").textContent = text;
+
+            // Update selected state
+            document.querySelectorAll(".custom-select-option").forEach(opt => opt.classList.remove("selected"));
+            el.classList.add("selected");
+
+            // Close the dropdown
+            document.getElementById("examSelectDropdown").classList.remove("open");
+            document.getElementById("examSelectTrigger").classList.remove("open");
+
+            // Clear search
+            document.getElementById("examSearchInput").value = "";
+            filterExamOptions();
+
+            // Show or hide result section
+            const resultSection = document.getElementById("semesterResultSection");
+            if (value && semesterData[value]) {
+                showResult(semesterData[value]);
+                resultSection.classList.add("visible");
+            } else {
+                resultSection.classList.remove("visible");
+            }
+        }
+
+        function showResult(data) {
+            document.getElementById("semesterTitle").textContent = data.title;
+            document.getElementById("infoSeatNo").textContent = data.seatNo;
+            document.getElementById("infoName").textContent = data.name;
+            document.getElementById("infoCurrentBacklog").textContent = data.currentBacklog;
+            document.getElementById("infoTotalBacklog").textContent = data.totalBacklog;
+            document.getElementById("infoSPI").textContent = data.spi;
+            document.getElementById("infoCPI").textContent = data.cpi;
+            document.getElementById("infoResultClass").textContent = data.resultClass;
+
+            // Build table rows
+            const tbody = document.getElementById("gradesTableBody");
+            tbody.innerHTML = "";
+            data.subjects.forEach((s, i) => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${i + 1}</td>
+                    <td>${s.course}</td>
+                    <td>${s.subject}</td>
+                    <td>${s.credit}</td>
+                    <td class="${s.intGrade === '-' ? 'grade-na' : 'grade-cell'}">${s.intGrade}</td>
+                    <td class="${s.extGrade === '-' ? 'grade-na' : 'grade-cell'}">${s.extGrade}</td>
+                    <td class="${s.prGrade === '-' ? 'grade-na' : 'grade-highlight'}">${s.prGrade}</td>
+                    <td class="grade-cell">${s.overall}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Success message
+            const msg = document.getElementById("resultSuccessMsg");
+            if (data.passed) {
+                msg.querySelector("span").textContent = "You have passed all the subjects.";
+                msg.style.display = "flex";
+            } else {
+                msg.style.display = "none";
+            }
+        }
+
+        function filterExamOptions() {
+            const query = document.getElementById("examSearchInput").value.toLowerCase();
+            document.querySelectorAll(".custom-select-option").forEach(opt => {
+                const text = opt.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    opt.style.display = "";
+                } else {
+                    opt.style.display = "none";
+                }
+            });
+        }
+
+        // Close all dropdowns when clicking outside
+        window.addEventListener("click", function () {
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.classList.contains("show")) {
+                    d.classList.remove("show");
+                }
+            });
+            // Also close custom select
+            document.getElementById("examSelectDropdown").classList.remove("open");
+            document.getElementById("examSelectTrigger").classList.remove("open");
+        });
+    </script>
+</body>
+
+</html>

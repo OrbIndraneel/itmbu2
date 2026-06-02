@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="ITM(SLS) BARODA UNIVERSITY | Fee History">
+    <title>ITM(SLS) BARODA UNIVERSITY | Fee History</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-color: #eef1f5;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333333;
+        }
+
+        /* ===== Header ===== */
+        .dashboard-header {
+            background-color: #ffffff;
+            height: 75px;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .header-logo {
+            height: 50px;
+            width: auto;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+        }
+
+        .header-profile-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: background-color 0.15s;
+            user-select: none;
+        }
+
+        .header-profile-toggle:hover {
+            background-color: #f6f8fa;
+        }
+
+        .header-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #c2cad8;
+        }
+
+        .header-welcome {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555555;
+        }
+
+        .header-welcome span {
+            color: #337ab7;
+            font-weight: 700;
+        }
+
+        /* ===== Dropdown Menus ===== */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 55px;
+            right: 0;
+            background-color: #2c3542;
+            min-width: 190px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            padding: 5px 0;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 22px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #2c3542;
+        }
+
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2c3542;
+            min-width: 220px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            padding: 5px 0;
+        }
+
+        .nav-dropdown.show {
+            display: block;
+        }
+
+        .nav-item-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            color: #a5b6c7;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #3e4b5c;
+            color: #ffffff;
+        }
+
+        .dropdown-item i {
+            color: #5b9bd1;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* ===== Navigation ===== */
+        .nav-tier-1 {
+            background-color: #364150;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2f3742;
+        }
+
+        .nav-item-1 {
+            color: #b4bcc8;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .nav-item-1:hover {
+            color: #ffffff;
+            background-color: #3e4b5c;
+        }
+
+        .nav-item-1.active {
+            color: #ffffff;
+            background-color: #2c3542;
+        }
+
+        .nav-item-1 i.fa-angle-down {
+            margin-left: 4px;
+            font-size: 11px;
+        }
+
+        .nav-tier-2 {
+            background-color: #ffffff;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #e1e6eb;
+        }
+
+        .nav-tier-2-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item-2 {
+            color: #7f90a4;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.15s;
+        }
+
+        .nav-item-2:hover {
+            color: #3598dc;
+        }
+
+        .nav-item-2.active {
+            color: #333333;
+        }
+
+        .page-title-row {
+            padding: 15px 0 15px 15px;
+            margin: 0;
+            border-top: 1px solid #f1f3fa;
+        }
+
+        .page-title {
+            font-size: 22px;
+            font-weight: 300;
+            color: #666666;
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .page-title span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #93a3b5;
+            text-transform: uppercase;
+        }
+
+        /* ===== Main Content ===== */
+        .content-container {
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* ===== Summary Cards Row ===== */
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        @media (max-width: 991px) {
+            .summary-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .summary-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e6eb;
+            padding: 18px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .summary-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .summary-card-value {
+            font-size: 28px;
+            font-weight: 300;
+            margin: 0;
+        }
+
+        .summary-card-icon {
+            font-size: 26px;
+            opacity: 0.7;
+        }
+
+        .summary-card-bar {
+            height: 4px;
+            margin-top: 10px;
+            border-radius: 2px;
+        }
+
+        .summary-card-label {
+            font-size: 12px;
+            font-weight: 600;
+            margin-top: 6px;
+            text-transform: uppercase;
+        }
+
+        .card-green .summary-card-value {
+            color: #26c281;
+        }
+
+        .card-green .summary-card-icon {
+            color: #26c281;
+        }
+
+        .card-green .summary-card-bar {
+            background-color: #26c281;
+        }
+
+        .card-green .summary-card-label {
+            color: #e02222;
+        }
+
+        .card-blue .summary-card-value {
+            color: #659be0;
+        }
+
+        .card-blue .summary-card-icon {
+            color: #659be0;
+        }
+
+        .card-blue .summary-card-bar {
+            background-color: #659be0;
+        }
+
+        .card-blue .summary-card-label {
+            color: #659be0;
+        }
+
+        .card-yellow .summary-card-value {
+            color: #c5a841;
+        }
+
+        .card-yellow .summary-card-icon {
+            color: #c5a841;
+        }
+
+        .card-yellow .summary-card-bar {
+            background-color: #c5a841;
+        }
+
+        .card-yellow .summary-card-label {
+            color: #c5a841;
+        }
+
+        .card-red .summary-card-value {
+            color: #e7505a;
+        }
+
+        .card-red .summary-card-icon {
+            color: #e7505a;
+        }
+
+        .card-red .summary-card-bar {
+            background-color: #e7505a;
+        }
+
+        .card-red .summary-card-label {
+            color: #e7505a;
+        }
+
+        /* ===== Tabs Row ===== */
+        .fee-tabs-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e7505a;
+            margin-bottom: 20px;
+            padding-bottom: 0;
+        }
+
+        .fee-tabs {
+            display: flex;
+            gap: 0;
+        }
+
+        .fee-tab {
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #555;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-bottom: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.15s;
+            text-decoration: none;
+        }
+
+        .fee-tab:hover {
+            background-color: #e8e8e8;
+        }
+
+        .fee-tab.active {
+            background-color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+            margin-bottom: -1px;
+        }
+
+        .fee-tab i {
+            font-size: 13px;
+        }
+
+        .btn-back-dashboard {
+            padding: 7px 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #333;
+            border: none;
+            border-radius: 0;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: background-color 0.15s;
+        }
+
+        .btn-back-dashboard:hover {
+            background-color: #555;
+        }
+
+        /* ===== Section Cards ===== */
+        .section-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f1f3fa;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-left: 3px solid #e7505a;
+        }
+
+        .section-header i {
+            color: #26c281;
+            font-size: 16px;
+        }
+
+        .section-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #e7505a;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .section-body {
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        /* ===== Data Tables ===== */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .data-table thead th {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e6eb;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 600;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .data-table tbody td {
+            border: 1px solid #e1e6eb;
+            padding: 8px 10px;
+            text-align: center;
+            color: #333;
+            vertical-align: middle;
+        }
+
+        .data-table tbody tr:hover {
+            background-color: #fafafa;
+        }
+
+        .data-table tfoot td {
+            border: 1px solid #e1e6eb;
+            padding: 8px 10px;
+            text-align: center;
+            font-weight: 700;
+            color: #555;
+            background-color: #f9f9f9;
+        }
+
+        .text-green {
+            color: #26c281;
+        }
+
+        .text-red {
+            color: #e7505a;
+        }
+
+        .text-teal {
+            color: #36c6d3;
+        }
+
+        /* Action Icons */
+        .action-btn {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .action-btn-blue {
+            background-color: #659be0;
+        }
+
+        .action-btn-red {
+            background-color: #e7505a;
+        }
+
+        .action-btn-green {
+            background-color: #26c281;
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .badge-success {
+            background-color: #26c281;
+        }
+
+        .badge-danger {
+            background-color: #e7505a;
+        }
+
+        /* Alert Box */
+        .alert-danger-box {
+            background-color: #fbe1e3;
+            border: 1px solid #fbe1e3;
+            color: #e73d4a;
+            padding: 12px 15px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        /* Scroll Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #a6b1bd;
+            color: #ffffff;
+            border: none;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .scroll-top-btn:hover {
+            opacity: 1;
+            background-color: #8e9ca8;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img class="header-logo" src="assets/images/itmbu_logo.png" alt="ITM Baroda University">
+        </div>
+        <div class="header-right">
+            <div class="header-profile-toggle" onclick="toggleDropdown(event)">
+                <img class="header-avatar" src="assets/images/student_photo.png" alt="Student Profile Photo">
+                <div class="header-welcome">Hi, <span>Vaghela Dhyey Amitkumar</span>
+                    <i class="fa fa-angle-down" style="margin-left: 5px; color: #a6b1bd;"></i>
+                </div>
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to profile...')"><i class="fa fa-user"></i>
+                    My Profile</a>
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to change password...')"><i
+                        class="fa fa-key"></i> Change Password</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="logout()"><i class="fa fa-lock"></i> Log
+                    Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tier 1 -->
+    <nav class="nav-tier-1">
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'iaDropdown')"><i
+                    class="fa fa-bar-chart"></i> Internal Assessment <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="iaDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Internal Assessment Marks...')">Internal Assessment Marks</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item-1"><i class="fa fa-bus"></i> Transport <i class="fa fa-angle-down"></i></a>
+        <a href="dashboard.html" class="nav-item-1"><i class="fa fa-tachometer"></i> Dashboard</a>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'personalDropdown')"><i
+                    class="fa fa-user"></i> Personal <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="personalDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Profile...')"><i
+                        class="fa fa-user"></i> Profile</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'emiDropdown')"><i
+                    class="fa fa-credit-card"></i> EMI <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="emiDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Loan Application History...')"><i class="fa fa-history"></i> Loan
+                    Application History</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Using EMI...')"><i
+                        class="fa fa-credit-card"></i> Pay Using EMI</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'timetableDropdown')"><i
+                    class="fa fa-calendar"></i> Timetable / Attendance <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="timetableDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Timetable...')"><i
+                        class="fa fa-calendar"></i> Timetable</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Attendance...')"><i
+                        class="fa fa-file-text-o"></i> Attendance</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'examDropdown')"><i
+                    class="fa fa-file-text-o"></i> Exam <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="examDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Admit Card...')"><i
+                        class="fa fa-calendar-check-o"></i> Admit Card</a>
+                <a href="result.html" class="dropdown-item"><i class="fa fa-trophy"></i> Result</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Regular Exam Form Submission...')"><i class="fa fa-file-text-o"></i>
+                    Regular Exam Form Submission</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Remedial Exam Form...')"><i class="fa fa-file-text-o"></i> Remedial
+                    Exam Form</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item-1"><i class="fa fa-book"></i> LMS</a>
+    </nav>
+
+    <!-- Navigation Tier 2 -->
+    <nav class="nav-tier-2">
+        <div class="nav-tier-2-links">
+            <a href="#" class="nav-item-2"><i class="fa fa-pencil-square-o"></i> Mid Exam</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2"
+                    onclick="toggleNavDropdown(event, 'convocationDropdown')"><i class="fa fa-graduation-cap"></i>
+                    Convocation <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="convocationDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Convocation Registration...')"><i
+                            class="fa fa-graduation-cap"></i> Convocation Registration</a>
+                </div>
+            </div>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2 active"
+                    onclick="toggleNavDropdown(event, 'feeDropdown')"><i class="fa fa-money"></i> Fee <i
+                        class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="feeDropdown">
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-history"></i> Fee History</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-bus"></i> Transport Fee</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-users"></i> Mentoring</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'hostelDropdown')"><i
+                        class="fa fa-building-o"></i> Hostel <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="hostelDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Fees...')"><i
+                            class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Hostel...')"><i
+                            class="fa fa-building-o"></i> Hostel</a>
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Gate Pass List...')"><i class="fa fa-building-o"></i> Gate Pass
+                        List</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-comments-o"></i> Feedback</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'otherDropdown')"><i
+                        class="fa fa-cog"></i> Other <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="otherDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Certificate Request...')">Certificate Request</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-title-row">
+            <h2 class="page-title">Fee History <span>Vaghela Dhyey Amitkumar</span></h2>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="content-container">
+
+        <!-- Summary Cards -->
+        <div class="summary-cards">
+            <div class="summary-card card-green">
+                <div class="summary-card-top">
+                    <h2 class="summary-card-value">96,000</h2>
+                    <i class="fa fa-graduation-cap summary-card-icon"></i>
+                </div>
+                <div class="summary-card-bar"></div>
+                <div class="summary-card-label">Fees To Be Collected</div>
+            </div>
+            <div class="summary-card card-blue">
+                <div class="summary-card-top">
+                    <h2 class="summary-card-value">0</h2>
+                    <i class="fa fa-undo summary-card-icon"></i>
+                </div>
+                <div class="summary-card-bar"></div>
+                <div class="summary-card-label">Previously Paid</div>
+            </div>
+            <div class="summary-card card-yellow">
+                <div class="summary-card-top">
+                    <h2 class="summary-card-value">96,000</h2>
+                    <i class="fa fa-check summary-card-icon"></i>
+                </div>
+                <div class="summary-card-bar"></div>
+                <div class="summary-card-label">Paid</div>
+            </div>
+            <div class="summary-card card-red">
+                <div class="summary-card-top">
+                    <h2 class="summary-card-value">0</h2>
+                    <i class="fa fa-inr summary-card-icon"></i>
+                </div>
+                <div class="summary-card-bar"></div>
+                <div class="summary-card-label">Outstanding Amount</div>
+            </div>
+        </div>
+
+        <!-- Tabs Row -->
+        <div class="fee-tabs-row">
+            <div class="fee-tabs">
+                <a href="javascript:void(0)" class="fee-tab active"><i class="fa fa-graduation-cap"></i> Academic Fee
+                    Details</a>
+                <a href="javascript:void(0)" class="fee-tab"><i class="fa fa-building-o"></i> Transport Fee Details</a>
+            </div>
+            <a href="dashboard.html" class="btn-back-dashboard"><i class="fa fa-chevron-left"></i> Back to Dashboard</a>
+        </div>
+
+        <!-- Fee Details -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fa fa-cogs"></i>
+                <h3>Fee Details</h3>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th style="width:30px;"></th>
+                            <th>Sr.</th>
+                            <th>Action</th>
+                            <th>Semester</th>
+                            <th>Fees To Be Collected</th>
+                            <th>Refunded</th>
+                            <th>Previously Paid</th>
+                            <th>Paid</th>
+                            <th>Outstanding</th>
+                            <th>Other Fee Outstanding</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><button class="action-btn action-btn-blue"><i class="fa fa-plus"></i></button></td>
+                            <td>1</td>
+                            <td><button class="action-btn action-btn-red"><i class="fa fa-file-pdf-o"></i></button></td>
+                            <td>3</td>
+                            <td><strong>&#8377;43,000</strong></td>
+                            <td>&#8377;0</td>
+                            <td class="text-red"><strong>&#8377;0</strong></td>
+                            <td class="text-teal"><strong>&#8377;43,000</strong></td>
+                            <td class="text-red"><strong>&#8377;0</strong></td>
+                            <td class="text-green">0</td>
+                        </tr>
+                        <tr>
+                            <td><button class="action-btn action-btn-blue"><i class="fa fa-plus"></i></button></td>
+                            <td>2</td>
+                            <td><button class="action-btn action-btn-red"><i class="fa fa-file-pdf-o"></i></button></td>
+                            <td>4</td>
+                            <td><strong>&#8377;53,000</strong></td>
+                            <td>&#8377;0</td>
+                            <td class="text-red"><strong>&#8377;0</strong></td>
+                            <td class="text-teal"><strong>&#8377;53,000</strong></td>
+                            <td class="text-red"><strong>&#8377;0</strong></td>
+                            <td class="text-green">0</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" style="text-align: right;">Total</td>
+                            <td>96,000</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td class="text-teal">96,000</td>
+                            <td>0</td>
+                            <td class="text-green">0</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+
+
+        <!-- Receipts List -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fa fa-file-text-o" style="color: #26c281;"></i>
+                <h3>Receipts List</h3>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sr.</th>
+                            <th>Action</th>
+                            <th>Date</th>
+                            <th>Receipt No.</th>
+                            <th>Semester</th>
+                            <th>Payment Mode</th>
+                            <th>Ref. No.</th>
+                            <th>Ref. Date</th>
+                            <th>Ref. Bank</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><a href="javascript:void(0)" style="color: #337ab7; font-weight: 600;">1</a></td>
+                            <td><button class="action-btn action-btn-red"><i class="fa fa-file-pdf-o"></i></button></td>
+                            <td>19-01-2026</td>
+                            <td>C/25/08180</td>
+                            <td>4</td>
+                            <td>EaseBuzz</td>
+                            <td>E2601190SFLW2Q</td>
+                            <td>19-01-2026</td>
+                            <td></td>
+                            <td style="text-align: right;">53,000</td>
+                        </tr>
+                        <tr>
+                            <td><a href="javascript:void(0)" style="color: #337ab7; font-weight: 600;">2</a></td>
+                            <td><button class="action-btn action-btn-red"><i class="fa fa-file-pdf-o"></i></button></td>
+                            <td>03-10-2025</td>
+                            <td>C/25/04999</td>
+                            <td>3</td>
+                            <td>EaseBuzz</td>
+                            <td>E2510030N7RKYZ</td>
+                            <td>03-10-2025</td>
+                            <td></td>
+                            <td style="text-align: right;">43,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Refund Order -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fa fa-file-text-o" style="color: #26c281;"></i>
+                <h3>Refund Order</h3>
+            </div>
+            <div class="section-body" style="padding: 0;">
+                <div class="alert-danger-box">
+                    <i class="fa fa-times-circle"></i> No Record Found
+                </div>
+            </div>
+        </div>
+
+        <!-- Challan List -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fa fa-file-text-o" style="color: #26c281;"></i>
+                <h3>Challan List</h3>
+            </div>
+            <div class="section-body" style="padding: 0;">
+                <div class="alert-danger-box">
+                    <i class="fa fa-times-circle"></i> No Record Found
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Transaction History -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fa fa-cogs"></i>
+                <h3>Transaction History</h3>
+            </div>
+            <div class="section-body">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Sr.</th>
+                            <th>Payment Date</th>
+                            <th>Academic Year</th>
+                            <th>Sem./Year</th>
+                            <th>Payment Mode</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th style="text-align:left;">Payment Details</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td style="white-space:nowrap;">23-01-2026 04:08:05 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 4</td>
+                            <td>EaseBuzz</td>
+                            <td>48,500.00</td>
+                            <td><span class="badge badge-success">success</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_23012026160805306PM, Txn
+                                ID : E2601230SNSBVX, Mode : UPI</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td style="white-space:nowrap;">17-01-2026 09:20:23 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 4</td>
+                            <td>EaseBuzz</td>
+                            <td>53,000.00</td>
+                            <td><span class="badge badge-success">success</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_17012026212023643PM, Txn
+                                ID : E2601170SDHGOH, Mode : UPI</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td style="white-space:nowrap;">17-01-2026 09:18:28 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 4</td>
+                            <td>EaseBuzz</td>
+                            <td>53,000.00</td>
+                            <td><span class="badge badge-danger">failure</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_17012026211828561PM, Txn
+                                ID : E2601170SDHCTH, Mode : UPI</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td style="white-space:nowrap;">16-07-2025 09:08:10 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 3</td>
+                            <td>EaseBuzz</td>
+                            <td>48,500.00</td>
+                            <td><span class="badge badge-success">success</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_16072025210810464PM, Txn
+                                ID : E2507160J9JK2P, <strong>Mode : UPI</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td style="white-space:nowrap;">15-07-2025 01:16:34 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 3</td>
+                            <td>EaseBuzz</td>
+                            <td>48,500.00</td>
+                            <td><span class="badge badge-danger">failure</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_15072025131634573PM, Txn
+                                ID : E2507150J6P6F5, <strong>Mode : UPI</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td style="white-space:nowrap;">15-07-2025 01:13:18 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 3</td>
+                            <td>EaseBuzz</td>
+                            <td>48,500.00</td>
+                            <td><span class="badge badge-danger">failure</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_15072025131317730PM, Txn
+                                ID : E2507150J6OXRZ, <strong>Mode : UPI</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td style="white-space:nowrap;">15-07-2025 01:09:06 PM</td>
+                            <td>2025-26</td>
+                            <td>Semester - 3</td>
+                            <td>EaseBuzz</td>
+                            <td>53,000.00</td>
+                            <td><span class="badge badge-success">success</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_15072025130906800PM, Txn
+                                ID : E2507150J6ONBK, <strong>Mode : UPI</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td style="white-space:nowrap;">04-02-2025 12:41:39 PM</td>
+                            <td>2024-25</td>
+                            <td>Semester - 2</td>
+                            <td>EaseBuzz</td>
+                            <td>48,500.00</td>
+                            <td><span class="badge badge-success">success</span></td>
+                            <td style="text-align:left; font-size:11px;">Merchant TxnID : 7489_04022025124139150PM, Txn
+                                ID : E2502040D0A0CY, <strong>Mode : UPI</strong></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scroll Top Button -->
+    <button class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script type="text/javascript">
+        // Security check
+        if (localStorage.getItem("gnums_auth_state") !== "true") {
+            window.location.href = "itmbu.html";
+        }
+
+        function logout() {
+            localStorage.removeItem("gnums_auth_state");
+            localStorage.removeItem("gnums_user_role");
+            window.location.href = "itmbu.html";
+        }
+
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== "profileDropdown") d.classList.remove("show");
+            });
+            document.getElementById("profileDropdown").classList.toggle("show");
+        }
+
+        function toggleNavDropdown(event, dropdownId) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== dropdownId) d.classList.remove("show");
+            });
+            document.getElementById(dropdownId).classList.toggle("show");
+        }
+
+        window.addEventListener("click", function () {
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                d.classList.remove("show");
+            });
+        });
+
+        // Tab switching (visual only)
+        document.querySelectorAll(".fee-tab").forEach(tab => {
+            tab.addEventListener("click", () => {
+                document.querySelectorAll(".fee-tab").forEach(t => t.classList.remove("active"));
+                tab.classList.add("active");
+            });
+        });
+    </script>
+</body>
+
+</html>
