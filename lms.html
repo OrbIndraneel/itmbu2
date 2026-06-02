@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="ITM(SLS) BARODA UNIVERSITY | LMS">
+    <title>ITM(SLS) BARODA UNIVERSITY | LMS</title>
+
+    <!-- CSS Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background-color: #e9ecf0;
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Top Header Styling */
+        .dashboard-header {
+            background-color: #2b3643;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 38px;
+            width: auto;
+        }
+
+        .header-right {
+            position: relative;
+        }
+
+        .header-profile-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            color: #c6cfda;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 10px 10px;
+            transition: background-color 0.15s;
+        }
+
+        .header-profile-toggle:hover {
+            background-color: #3f4f62;
+            color: #ffffff;
+        }
+
+        .header-avatar {
+            width: 29px;
+            height: 29px;
+            border-radius: 50% !important;
+            object-fit: cover;
+        }
+
+        .header-welcome span {
+            color: #c6cfda;
+        }
+
+        /* Profile Dropdown Menu */
+        .profile-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: #2c3542;
+            min-width: 175px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            border-radius: 0px;
+            padding: 5px 0;
+            margin-top: 2px;
+        }
+
+        .profile-dropdown.show {
+            display: block;
+        }
+
+        .profile-dropdown::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            right: 22px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid #2c3542;
+        }
+
+        /* Navigation Dropdown Menu */
+        .nav-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #2c3542;
+            min-width: 220px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+            z-index: 1000;
+            border-radius: 0px;
+            padding: 5px 0;
+        }
+
+        .nav-dropdown.show {
+            display: block;
+        }
+
+        .nav-item-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 15px;
+            color: #a5b6c7;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: background-color 0.15s, color 0.15s;
+        }
+
+        .dropdown-item:hover {
+            background-color: #3e4b5c;
+            color: #ffffff;
+        }
+
+        .dropdown-item i {
+            color: #5b9bd1;
+            font-size: 14px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Navigation Styling */
+        .nav-tier-1 {
+            background-color: #364150;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #2f3742;
+        }
+
+        .nav-item-1 {
+            color: #b4bcc8;
+            text-decoration: none;
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.15s, background-color 0.15s;
+        }
+
+        .nav-item-1:hover {
+            color: #ffffff;
+            background-color: #3e4b5c;
+        }
+
+        .nav-item-1.active {
+            color: #ffffff;
+            background-color: #2c3542;
+        }
+
+        .nav-item-1 i.fa-angle-down {
+            margin-left: 4px;
+            font-size: 11px;
+        }
+
+        .nav-tier-2 {
+            background-color: #ffffff;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid #e1e6eb;
+        }
+
+        .nav-tier-2-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item-2 {
+            color: #7f90a4;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.15s;
+        }
+
+        .nav-item-2:hover {
+            color: #3598dc;
+        }
+
+        .nav-item-2.active {
+            color: #333333;
+        }
+
+        .page-title-row {
+            padding: 15px 0 15px 15px;
+            margin: 0;
+            border-top: 1px solid #f1f3fa;
+        }
+
+        .page-title {
+            font-size: 22px;
+            font-weight: 300;
+            color: #666666;
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .page-title span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #93a3b5;
+            text-transform: uppercase;
+        }
+
+        /* Main Content Container */
+        .content-container {
+            max-width: 1400px;
+            margin: 25px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* LMS Grid Styling */
+        .lms-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 1200px) {
+            .lms-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .lms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .lms-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .lms-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e6eb;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .lms-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .lms-card-image-wrapper {
+            position: relative;
+            width: 100%;
+            padding-top: 69.93%; /* matches 286x200 aspect ratio */
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .lms-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('assets/images/lms_card_default.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 0.2s ease-in-out;
+        }
+
+        .lms-card:hover .lms-card-image {
+            background-image: url('assets/images/lms_card_hover.png');
+        }
+
+        /* Empty card (Card 7) style */
+        .lms-card.empty-card .lms-card-image {
+            background-image: none;
+            background-color: #ffffff;
+        }
+
+        .lms-card.empty-card:hover .lms-card-image {
+            background-image: none;
+            background-color: #ffffff;
+        }
+
+        /* HTML Semester badge for empty card where no background image exists */
+        .semester-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background-color: #d9534f;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 12px;
+            z-index: 10;
+        }
+
+        .lms-card-footer {
+            padding: 15px 10px;
+            text-align: center;
+            background-color: #ffffff;
+            border-top: 1px solid #f1f3fa;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+        }
+
+        .lms-card-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #337ab7;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .lms-card:hover .lms-card-title {
+            color: #23527c;
+        }
+
+        /* Scroll Top Button */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 38px;
+            height: 38px;
+            background-color: #a6b1bd;
+            color: #ffffff;
+            border: none;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .scroll-top-btn:hover {
+            opacity: 1;
+            background-color: #8e9ca8;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <img class="header-logo" src="assets/images/itmbu_logo.png" alt="ITM Baroda University">
+        </div>
+        <div class="header-right">
+            <div class="header-profile-toggle" onclick="toggleDropdown(event)">
+                <img class="header-avatar" src="assets/images/student_photo.png" alt="Student Profile Photo">
+                <div class="header-welcome">Hi, <span>Vaghela Dhyey Amitkumar</span> <i class="fa fa-angle-down"
+                        style="margin-left: 5px; color: #a6b1bd;"></i></div>
+            </div>
+            <!-- Profile Dropdown -->
+            <div class="profile-dropdown" id="profileDropdown">
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to profile...')"><i class="fa fa-user"></i>
+                    My Profile</a>
+                <a href="#" class="dropdown-item" onclick="alert('Navigating to change password...')"><i
+                        class="fa fa-key"></i> Change Password</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="logout()"><i class="fa fa-lock"></i> Log
+                    Out</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tier 1 -->
+    <nav class="nav-tier-1">
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'iaDropdown')"><i
+                    class="fa fa-bar-chart"></i> Internal Assessment <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="iaDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Internal Assessment Marks...')">Internal Assessment Marks</a>
+            </div>
+        </div>
+        <a href="#" class="nav-item-1"><i class="fa fa-bus"></i> Transport <i class="fa fa-angle-down"></i></a>
+        <a href="dashboard.html" class="nav-item-1"><i class="fa fa-tachometer"></i> Dashboard</a>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'personalDropdown')"><i
+                    class="fa fa-user"></i> Personal <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="personalDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Profile...')"><i
+                        class="fa fa-user"></i> Profile</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'emiDropdown')"><i
+                    class="fa fa-credit-card"></i> EMI <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="emiDropdown">
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Loan Application History...')"><i class="fa fa-history"></i> Loan
+                    Application History</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Using EMI...')"><i
+                        class="fa fa-credit-card"></i> Pay Using EMI</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'timetableDropdown')"><i
+                    class="fa fa-calendar"></i> Timetable / Attendance <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="timetableDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Timetable...')"><i
+                        class="fa fa-calendar"></i> Timetable</a>
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Attendance...')"><i
+                        class="fa fa-file-text-o"></i> Attendance</a>
+            </div>
+        </div>
+        <div class="nav-item-wrapper">
+            <a href="javascript:void(0)" class="nav-item-1" onclick="toggleNavDropdown(event, 'examDropdown')"><i
+                    class="fa fa-file-text-o"></i> Exam <i class="fa fa-angle-down"></i></a>
+            <div class="nav-dropdown" id="examDropdown">
+                <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Admit Card...')"><i
+                        class="fa fa-calendar-check-o"></i> Admit Card</a>
+                <a href="result.html" class="dropdown-item"><i class="fa fa-trophy"></i> Result</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Regular Exam Form Submission...')"><i class="fa fa-file-text-o"></i>
+                    Regular Exam Form Submission</a>
+                <a href="javascript:void(0)" class="dropdown-item"
+                    onclick="alert('Navigating to Remedial Exam Form...')"><i class="fa fa-file-text-o"></i> Remedial
+                    Exam Form</a>
+            </div>
+        </div>
+        <a href="lms.html" class="nav-item-1 active"><i class="fa fa-book"></i> LMS</a>
+    </nav>
+
+    <!-- Navigation Tier 2 -->
+    <nav class="nav-tier-2">
+        <div class="nav-tier-2-links">
+            <a href="#" class="nav-item-2"><i class="fa fa-pencil-square-o"></i> Mid Exam</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'convocationDropdown')"><i
+                        class="fa fa-graduation-cap"></i> Convocation <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="convocationDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Convocation Registration...')"><i
+                            class="fa fa-graduation-cap"></i> Convocation Registration</a>
+                </div>
+            </div>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'feeDropdown')"><i
+                        class="fa fa-money"></i> Fee <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="feeDropdown">
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-history"></i> Fee History</a>
+                    <a href="fees.html" class="dropdown-item"><i class="fa fa-bus"></i> Transport Fee</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-users"></i> Mentoring</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'hostelDropdown')"><i
+                        class="fa fa-building-o"></i> Hostel <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="hostelDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Pay Fees...')"><i
+                            class="fa fa-credit-card"></i> Pay Fees</a>
+                    <a href="javascript:void(0)" class="dropdown-item" onclick="alert('Navigating to Hostel...')"><i
+                            class="fa fa-building-o"></i> Hostel</a>
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Gate Pass List...')"><i class="fa fa-building-o"></i> Gate Pass
+                        List</a>
+                </div>
+            </div>
+            <a href="#" class="nav-item-2"><i class="fa fa-comments-o"></i> Feedback</a>
+            <div class="nav-item-wrapper">
+                <a href="javascript:void(0)" class="nav-item-2" onclick="toggleNavDropdown(event, 'otherDropdown')"><i
+                        class="fa fa-cog"></i> Other <i class="fa fa-angle-down"></i></a>
+                <div class="nav-dropdown" id="otherDropdown">
+                    <a href="javascript:void(0)" class="dropdown-item"
+                        onclick="alert('Navigating to Certificate Request...')">Certificate Request</a>
+                </div>
+            </div>
+        </div>
+        <div class="page-title-row">
+            <h2 class="page-title">LMS <span>Vaghela Dhyey Amitkumar</span></h2>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="content-container">
+        <div class="lms-grid">
+            <!-- Subject 1 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Computer Networking course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2410C4 - Computer Networking</h4>
+                </div>
+            </a>
+
+            <!-- Subject 2 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Design and Analysis of Algorithm course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2410C5 - Design and Analysis of Algorithm</h4>
+                </div>
+            </a>
+
+            <!-- Subject 3 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Operating Systems course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2411C3 - Operating Systems</h4>
+                </div>
+            </a>
+
+            <!-- Subject 4 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening PBL:Data Analysis using R course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2420A3 - PBL:Data Analysis using R</h4>
+                </div>
+            </a>
+
+            <!-- Subject 5 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Software Engineering course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2411C2 - Software Engineering</h4>
+                </div>
+            </a>
+
+            <!-- Subject 6 -->
+            <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Web Technology course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">C2411C1 - Web Technology</h4>
+                </div>
+            </a>
+
+            <!-- Subject 7 (Empty Graphic Card) -->
+            <a href="javascript:void(0)" class="lms-card empty-card" onclick="alert('Opening Probability and Statistics course materials...')">
+                <div class="lms-card-image-wrapper">
+                    <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                </div>
+                <div class="lms-card-footer">
+                    <h4 class="lms-card-title">S2420C2 - Probability and Statistics</h4>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Scroll Top Button -->
+    <button class="scroll-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa fa-arrow-up"></i>
+    </button>
+
+    <script type="text/javascript">
+        // Security check: redirect to login if not authenticated
+        if (localStorage.getItem("gnums_auth_state") !== "true") {
+            window.location.href = "itmbu.html";
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem("gnums_auth_state");
+            localStorage.removeItem("gnums_user_role");
+            window.location.href = "itmbu.html";
+        }
+
+        // Dropdown toggle function for profile
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== "profileDropdown") {
+                    d.classList.remove("show");
+                }
+            });
+            const dropdown = document.getElementById("profileDropdown");
+            if (dropdown) {
+                dropdown.classList.toggle("show");
+            }
+        }
+
+        // Dropdown toggle function for navigation links
+        function toggleNavDropdown(event, dropdownId) {
+            event.stopPropagation();
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.id !== dropdownId) {
+                    d.classList.remove("show");
+                }
+            });
+            const dropdown = document.getElementById(dropdownId);
+            if (dropdown) {
+                dropdown.classList.toggle("show");
+            }
+        }
+
+        // Close all dropdowns when clicking outside
+        window.addEventListener("click", function () {
+            document.querySelectorAll(".profile-dropdown, .nav-dropdown").forEach(d => {
+                if (d.classList.contains("show")) {
+                    d.classList.remove("show");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
