@@ -308,15 +308,15 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('assets/images/lms_card_default.png');
+            background-image: url('assets/images/lms_card_default_clean.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            transition: background-image 0.2s ease-in-out;
+            transition: filter 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
         .lms-card:hover .lms-card-image {
-            background-image: url('assets/images/lms_card_hover.png');
+            filter: brightness(0.3);
         }
 
         /* Empty card (Card 7) style */
@@ -327,21 +327,50 @@
 
         .lms-card.empty-card:hover .lms-card-image {
             background-image: none;
-            background-color: #ffffff;
+            background-color: #525252;
+            filter: none;
         }
 
-        /* HTML Semester badge for empty card where no background image exists */
+        /* HTML Semester badge for all cards to keep it consistent and always on top */
         .semester-badge {
             position: absolute;
             top: 12px;
             left: 12px;
-            background-color: #d9534f;
+            background-color: #a92328;
             color: #ffffff;
             font-size: 11px;
             font-weight: 600;
             padding: 3px 8px;
             border-radius: 12px;
             z-index: 10;
+        }
+
+        /* Hover Overlay for CONTENTS text */
+        .lms-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        .lms-card:hover .lms-card-overlay {
+            opacity: 1;
+        }
+
+        .lms-card-overlay-text {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .lms-card-footer {
@@ -538,6 +567,10 @@
                 onclick="alert('Opening Computer Networking course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 6</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2410C4 - Computer Networking</h4>
@@ -549,6 +582,10 @@
                 onclick="alert('Opening Design and Analysis of Algorithm course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 16</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2410C5 - Design and Analysis of Algorithm</h4>
@@ -560,6 +597,10 @@
                 onclick="alert('Opening Operating Systems course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 10</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2411C3 - Operating Systems</h4>
@@ -571,6 +612,10 @@
                 onclick="alert('Opening PBL:Data Analysis using R course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 0</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2420A3 - PBL:Data Analysis using R</h4>
@@ -582,6 +627,10 @@
                 onclick="alert('Opening Software Engineering course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 0</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2420A4 - PBL: Introduction to Generative AI</h4>
@@ -592,6 +641,10 @@
             <a href="javascript:void(0)" class="lms-card" onclick="alert('Opening Web Technology course materials...')">
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
+                    <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 10</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">C2420C1 - Principles of Artificial Intelligence</h4>
@@ -604,6 +657,9 @@
                 <div class="lms-card-image-wrapper">
                     <div class="lms-card-image"></div>
                     <span class="semester-badge">Semester - 4</span>
+                    <div class="lms-card-overlay">
+                        <div class="lms-card-overlay-text">CONTENTS : 19</div>
+                    </div>
                 </div>
                 <div class="lms-card-footer">
                     <h4 class="lms-card-title">S2420C1 - Discrete Mathematics using Python</h4>
