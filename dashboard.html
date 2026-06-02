@@ -839,27 +839,14 @@
     <script type="text/javascript">
         // Security check: redirect to login if not authenticated
         if (localStorage.getItem("gnums_auth_state") !== "true") {
-            let loginPath = "itmbu.html";
-            if (window.location.pathname.includes("Research_paper") || window.location.pathname.includes("dhyey")) {
-                loginPath = "itmbu.html";
-            } else {
-                loginPath = "Research_paper/dhyey/itmbu.html";
-            }
-            window.location.href = loginPath;
+            window.location.href = "itmbu.html";
         }
 
         // Logout function
         function logout() {
             localStorage.removeItem("gnums_auth_state");
             localStorage.removeItem("gnums_user_role");
-            
-            let logoutPath = "itmbu.html";
-            if (window.location.pathname.includes("Research_paper") || window.location.pathname.includes("dhyey")) {
-                logoutPath = "itmbu.html";
-            } else {
-                logoutPath = "Research_paper/dhyey/itmbu.html";
-            }
-            window.location.href = logoutPath;
+            window.location.href = "itmbu.html";
         }
 
         // Dropdown toggle function for profile

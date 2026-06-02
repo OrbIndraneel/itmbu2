@@ -466,14 +466,8 @@
                             localStorage.setItem("gnums_auth_state", "true");
                             localStorage.setItem("gnums_user_role", "Student");
 
-                            // Resolve redirection path dynamically
-                            let redirectPath = "dashboard.html";
-                            if (window.location.pathname.endsWith("itmbu.html") && !window.location.pathname.includes("dhyey")) {
-                                redirectPath = "Research_paper/dhyey/dashboard.html";
-                            } else if (window.location.pathname.endsWith("hehe.html")) {
-                                redirectPath = "Research_paper/dhyey/dashboard.html";
-                            }
-                            window.location.href = redirectPath;
+                            // Redirect directly to dashboard.html
+                            window.location.href = "dashboard.html";
                         } else {
                             alert("Invalid Student Credentials. Hint: Use '25C22519' & 'Dhyey$1330'.");
                         }
