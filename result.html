@@ -783,6 +783,9 @@
                                     oninput="filterExamOptions()" onclick="event.stopPropagation()">
                                 <div class="custom-select-option placeholder selected" data-value=""
                                     onclick="selectExamOption(this)">Select Exam</div>
+                                <div class="custom-select-option" data-value="btech-sem4-summer-2026"
+                                    onclick="selectExamOption(this)">BTech Regular Semester - 4 FOE - Summer 2025-26
+                                </div>
                                 <div class="custom-select-option" data-value="btech-sem3-winter-2025"
                                     onclick="selectExamOption(this)">BTech Regular Semester - 3 FOE - Winter 2025-26
                                 </div>
@@ -929,6 +932,27 @@
 
         // Mock result data for each semester
         const semesterData = {
+            "btech-sem4-summer-2026": {
+                title: "SEMESTER - 4",
+                seatNo: "720130247",
+                name: "VAGHELA DHYEY AMITKUMAR",
+                currentBacklog: 0,
+                totalBacklog: 0,
+                spi: "8.46",
+                cpi: "8.23",
+                resultClass: "First Class",
+                passed: true,
+                pdfUrl: "Grade_Sheet_24C22519 (4).pdf",
+                subjects: [
+                    { course: "C2410C4", subject: "Computer Networking", credit: "4.00", intGrade: "B", extGrade: "C", prGrade: "B", overall: "B" },
+                    { course: "C2410C5", subject: "Design and Analysis of Algorithm", credit: "4.00", intGrade: "B", extGrade: "C", prGrade: "A", overall: "B" },
+                    { course: "C2411C3", subject: "Operating Systems", credit: "4.00", intGrade: "B", extGrade: "B", prGrade: "A", overall: "B" },
+                    { course: "C2420A3", subject: "PBL:Data Analysis using R", credit: "1.00", intGrade: "-", extGrade: "-", prGrade: "A", overall: "A" },
+                    { course: "C2420A4", subject: "PBL:Introduction to Generative AI", credit: "1.00", intGrade: "-", extGrade: "-", prGrade: "A", overall: "A" },
+                    { course: "C2420C1", subject: "Principles of Artificial Intelligence", credit: "4.00", intGrade: "A", extGrade: "A", prGrade: "A", overall: "A" },
+                    { course: "S2420C1", subject: "Discrete Mathematics with Python", credit: "4.00", intGrade: "A", extGrade: "A", prGrade: "B", overall: "A" }
+                ]
+            },
             "btech-sem3-winter-2025": {
                 title: "SEMESTER - 3",
                 seatNo: "720130247",
@@ -937,8 +961,9 @@
                 totalBacklog: 0,
                 spi: "8.10",
                 cpi: "8.10",
-                resultClass: "First Class with Distinction",
+                resultClass: "First Class",
                 passed: true,
+                pdfUrl: "Grade_Sheet_25C22519(1).pdf",
                 subjects: [
                     { course: "C2310C2", subject: "Computer Architecture", credit: "4.00", intGrade: "A", extGrade: "B", prGrade: "B", overall: "A" },
                     { course: "C2310C5", subject: "Data Structures and Algorithms", credit: "4.00", intGrade: "E", extGrade: "A", prGrade: "B", overall: "B" },
@@ -1013,6 +1038,13 @@
                 msg.style.display = "flex";
             } else {
                 msg.style.display = "none";
+            }
+
+            // Update download button pdf URL
+            const downloadBtn = document.querySelector(".btn-download-marksheet");
+            if (downloadBtn && data.pdfUrl) {
+                downloadBtn.setAttribute("href", data.pdfUrl);
+                downloadBtn.setAttribute("download", data.pdfUrl);
             }
         }
 
